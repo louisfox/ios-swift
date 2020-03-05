@@ -17,16 +17,16 @@ class ViewController: UIViewController {
     
     @IBAction func checkSum(sender: AnyObject) {
 
-        shw1.text = "輸入的字串："+input_text.text
+        shw1.text = "輸入的字串："+(input_text.text ?? <#default value#>)
         
-        var len = count(input_text.text)
+        var len = input_text.text?.count
         
-        shw2.text = "字串的長度：\(len)個字母"
+        shw2.text = "字串的長度：\(String(describing: len))個字母"
         
         var sum:UInt32 = 0
-        let s = String(input_text.text).uppercaseString.unicodeScalars
+        let s = String(input_text.text!)
 
-        for index in indices(s){
+        for index in s.enumerated(){
             let value = s[index].value
             if (65<=value && value<=90) {
                 sum += s[index].value-64
